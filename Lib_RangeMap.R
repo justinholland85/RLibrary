@@ -1,0 +1,24 @@
+Lib.RangeMap  <-  function(X,R){
+  
+  Y  <-  rep(0, length(X))
+  N  <-  length(R) - 1 
+  
+  for(i in 1:N){
+    
+    if(R[i+1] == Inf){
+    
+    Y  <-  Y + i * (R[i] <= X & X <= R[i+1])
+      
+    } else {
+    
+    Y  <-  Y + i * (R[i] <= X & X < R[i+1])
+    
+    }
+    
+  }
+  
+  return(Y)
+  
+}
+
+
