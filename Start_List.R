@@ -31,6 +31,7 @@ source("Lib_PlotArea.R")
 source("Lib_Join.R")
 source("Lib_Grids.R")
 source("Lib_BarPlotStacked.R")
+source("Lib_TrafficLightPlot.R")
 
 
 # Data 
@@ -82,13 +83,14 @@ source("Lib_Tuple_Match.R")
 # Alife Specials
 source("Lib_AlifeVarChecker.R")
 source("Lib_SafeTable.R")
-#source("Lib_TaxCalculator.R")
+source("Lib_TaxCalculator.R")
 
 # Stats
 source("Lib_OLS.R")
 
 # Math
 source("Lib_Trig.R")
+source("Lib_PowerLaw.R")
 
 # Reference
 source("Lib_Recall.R")

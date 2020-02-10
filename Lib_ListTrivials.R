@@ -13,6 +13,17 @@ Lib.Take.Which  <-  function(A,B){
 
 ####
 
+Lib.Take.UpTo  <-  function(A,N){
+  
+  if(N > 0){ Seq <-  seq(1,N)} else {Seq <- 0}
+  
+  return(A[Seq])
+}
+
+
+
+####
+
 Lib.Take.One  <-  function(A,B){
   
   return(A[[B]])

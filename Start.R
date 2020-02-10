@@ -1,5 +1,5 @@
 #$$$$$ These are the source lines, add these to other codes, do not uncomment
-# Test Line
+
 # Work
 # source("/rab3/Playground/Justin/Code/R Library/Start.R")
 
@@ -27,10 +27,10 @@
 #Lib.Dir  <-  "C:/Users/justi/Documents/Model/R Centre/Function Library"
 
 #--- Work
-#Lib.Dir  <-  "/rab3/Playground/Justin/Code/R Library"
+Lib.Dir  <-  "/rab3/Playground/Justin/Code/R Library"
 
 #--- RAB RADLAB
-Lib.Dir  <- "/home/rucwa6/gitlab/pal_revenue_analysis/Personal_Codes/Justin/R_Library"
+#Lib.Dir  <- "/home/rucwa6/gitlab/pal_revenue_analysis/Personal_Codes/Justin/R_Library"
 
 setwd(Lib.Dir)
 source("Start_List.R")

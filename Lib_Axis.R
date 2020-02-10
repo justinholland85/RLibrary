@@ -133,6 +133,24 @@ Lib.Axis.PosNeg  <-  function(X){
 
 
 
+#####################################################################################################
+Lib.Axis.Range  <-  function(X){
+  
+  Min       <-  min(X, na.rm = TRUE)
+  Max       <-  max(X, na.rm = TRUE)
+  
+  First     <-  Lib.Axis(abs(Min) + abs(Max))
+  Delta     <-  First$Delta
+
+  MinRound  <-   Lib.Mround(Min, Delta, Dir = 1)
+  MaxRound  <-   Lib.Mround(Max, Delta, Dir = 1)
+  
+  Axis      <-  Lib.Axis(MaxRound - MinRound, Shift = MinRound)
+  
+  return(Axis)
+  
+}
+
 
 
 

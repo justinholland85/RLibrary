@@ -26,7 +26,7 @@ Lib.PlotLogLines  <-  function(Min,Max, Ymin, Ymax, Lty, Lwd, Col){
 
 ######################################################################################################
 
-Lib.PlotLogLines.Y  <-  function(PlotAxis, Y.Min, Y.Max, X.Min, X.Max,
+Lib.PlotLogLines.Y  <-  function(PlotAxis,  X.Lim, Y.Min, Y.Max, X.Min, X.Max,
                                  Lwd.Big, Col.Big, Lty.Big, Lwd.Small, Col.Small, Lty.Small){
   
   if(missing(PlotAxis)){PlotAxis  <- 1}
@@ -35,6 +35,9 @@ Lib.PlotLogLines.Y  <-  function(PlotAxis, Y.Min, Y.Max, X.Min, X.Max,
   if(missing(Y.Max)){ Y.Max   <-  par()$yaxp[2]}
   if(missing(X.Min)){ X.Min   <-  par()$xaxp[1]}
   if(missing(X.Max)){ X.Max   <-  par()$xaxp[2]}
+  
+  if(!missing(X.Lim)){X.Min  <-  X.Lim[1] 
+                      X.Max  <-  X.Lim[2]}
   
   if(missing(Lwd.Big)){ Lwd.Big <- 2}
   if(missing(Lty.Big)){ Lty.Big <- 1}
@@ -132,8 +135,9 @@ Lib.PlotLogLines.X  <-  function(PlotAxis, X.Min, X.Max, Y.Min, Y.Max,
 }
 ######################################################################################################
 
-Lib.PlotLines.Y  <-  function(Y.Axis,  X.Min, X.Max,
+Lib.PlotLines.Y  <-  function(Y.Axis, X.Lim, X.Min, X.Max,
                               Lwd, Col, Lty, PlotAxis, Labels, Cex){
+  
   
   if(missing(PlotAxis)){PlotAxis  <- 1}
   if(missing(Labels)){Labels  <-  Lib.BigNumbers(Y.Axis)}
@@ -142,6 +146,11 @@ Lib.PlotLines.Y  <-  function(Y.Axis,  X.Min, X.Max,
 
   if(missing(X.Min)){ X.Min   <-  par()$xaxp[1]}
   if(missing(X.Max)){ X.Max   <-  par()$xaxp[2]}
+  
+  if(!missing(X.Lim)){X.Min  <-  X.Lim[1] 
+                      X.Max  <-  X.Lim[2]}
+  
+  
   
   if(missing(Lwd)){Lwd <- 1}
   if(missing(Lty)){Lty <- 2}
@@ -167,24 +176,29 @@ Lib.PlotLines.Y  <-  function(Y.Axis,  X.Min, X.Max,
 
 ######################################################################################################
 
-Lib.PlotLines.X  <-  function(X.Axis,  Y.Min, Y.Max,
+Lib.PlotLines.X  <-  function(X.Axis, Y.Lim, Y.Min, Y.Max,
                               Lwd, Col, Lty, PlotAxis, Labels, Cex){
   
   # Note that string rotation doesnt work in axis function
   
-  if(missing(PlotAxis)){PlotAxis  <- 1}
-  if(missing(Labels)){Labels  <-  Lib.BigNumbers(X.Axis)}
-  if(missing(Cex)){Cex  <-  1}
+  if(missing(PlotAxis)){PlotAxis  <-  1}
+  if(missing(Labels)){Labels      <-  Lib.BigNumbers(X.Axis)}
+  if(missing(Cex)){Cex            <-  1}
 
   
   
   if(missing(Y.Min)){ Y.Min   <-  par()$yaxp[1]}
   if(missing(Y.Max)){ Y.Max   <-  par()$yaxp[2]}
   
+  if(!missing(Y.Lim)){Y.Min   <-  Y.Lim[1] 
+                      Y.Max   <-  Y.Lim[2]}
+  
+  
+  
   if(missing(Lwd)){Lwd <- 1}
   if(missing(Lty)){Lty <- 2}
   if(missing(Col)){ 
-    Col <-  Lib.ColourScheme.ExpCol(36, 5, Alpha = .7, ExpCol = 24, K = 6, Plot = 0)[3,3]}
+  Col <-  Lib.ColourScheme.ExpCol(36, 5, Alpha = .7, ExpCol = 24, K = 6, Plot = 0)[3,3]}
   
   if(PlotAxis == 1){
     
