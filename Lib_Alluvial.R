@@ -53,12 +53,17 @@ Lib.Alluvial  <-  function(Data,
                            Output){
 
 
-if(missing(Data)){Data  <-  Lib.Markov(N= 5)$V}
+if(missing(Data)){Data  <-  Lib.Markov(N = 5)$V}
      
-N  <-  nrow(Data)
-M  <-  ncol(Data)
+N            <-  nrow(Data)
+M            <-  ncol(Data)
 
-Max.NM  <-  max(N,M)
+Max.NM       <-  max(N,M)
+
+AllNames     <-  unique(unlist(lapply(Data, dimnames)))
+N.AllNames   <-  length(AllNames)  
+
+
 
 if(missing(Chord.Fills)){
      Chord.Fills  <-  Lib.ColourScheme(Max.NM, 5, V = .75, BG = "white", Alpha = .7,
@@ -107,8 +112,8 @@ Leg.Bords   <-  Block.Bords
 par(xpd = NA)
 
 
-if(is.vector(Chord.Fills)){Chord.Fills  <-  array(dim=c(N,M), Chord.Fills)}
-if(is.vector(Chord.Bords)){Chord.Bords  <-  array(dim=c(N,M), Chord.Bords)}
+if(is.vector(Chord.Fills)){Chord.Fills  <-  array(dim=c(N,M), Chord.Fills[1:N])}
+if(is.vector(Chord.Bords)){Chord.Bords  <-  array(dim=c(N,M), Chord.Bords[1:N])}
 
 
 Args   <-  list("Data"         = Data, 
@@ -135,7 +140,7 @@ Args   <-  list("Data"         = Data,
                 "Output"       = Output)
 
 
-#---- Determin proportions
+#---- Determine proportions
 
 A.Props     <-  rowSums(Data) / sum(Data) * (1 - Gap)
 B.Props     <-  colSums(Data) / sum(Data) * (1 - Gap)
@@ -317,17 +322,23 @@ Lib.Legend(Leg.Labels, X = Leg.X, Y = Leg.Y, Gap = .01, dY = .05, Cols = Leg.Fil
 
 if(Output == 1){
  
-Output    <-  list("Blocks.Left.X0"  = A.X.0,
-                   "Blocks.Left.X1"  = A.X.1,
-                   "Blocks.Right.X0" = B.X.0,
-                   "Blocks.Right.X1" = B.X.1,
-                   "Chords.Left.Y0"  = a.Y.0, 
-                   "Chords.Left.Y1"  = a.Y.1,
-                   "Chords.Right.Y0" = b.Y.0,
-                   "Chords.Right.Y1" = b.Y.1,
-                   "Chord.Fills"     = Chord.Fills,
-                   "Chord.Bords"     = Chord.Bords,
-                   "Args"            = Args)
+Output    <-  list("Blocks.Left.X0"    = A.X.0,
+                   "Blocks.Left.X1"    = A.X.1,
+                   "Blocks.Right.X0"   = B.X.0,
+                   "Blocks.Right.X1"   = B.X.1,
+                   "Chords.Left.Y0"    = a.Y.0, 
+                   "Chords.Left.Y1"    = a.Y.1,
+                   "Chords.Right.Y0"   = b.Y.0,
+                   "Chords.Right.Y1"   = b.Y.1,
+                   "Blocks.Left.Y0"    = A.Y.0,
+                   "Blocks.Left.Y1"    = A.Y.1,
+                   "Blocks.Right.Y0"   = B.Y.0,
+                   "Blocks.Right.Y1"   = B.Y.1,
+                   "Blocks.Left.Ymid"  = (A.Y.0 + A.Y.1) / 2,
+                   "Blocks.Right.Ymid" = (B.Y.0 + B.Y.1) / 2,
+                   "Chord.Fills"       = Chord.Fills,
+                   "Chord.Bords"       = Chord.Bords,
+                   "Args"              = Args)
 
 return(Output)
 }
