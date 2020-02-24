@@ -1,30 +1,31 @@
-N  <- 6
-R  <-  100
-
-
-Data         <-  array(dim = c(N,N), ceiling(R * runif(N * N)))
-Chord.Fills  <-  Lib.ColourScheme(N, 5, V = .75, BG = "white", Alpha = .7, Plot = 0 )[3,]
-Chord.Bords  <-  Lib.ColourScheme(N, 5, V = .75, BG = "white", Alpha = 1,  Plot = 0)[1,]
-Block.Fills  <-  Lib.ColourScheme(N, 5, V = .75, BG = "white", Alpha = 1,  Plot = 0)[1,]
-Block.Bords  <-  Lib.ColourScheme(N, 5, V = .75, BG = "white", Alpha = 1,  Plot = 0 )[1,]
-Block.Lwd    <-  2
-
-Gap          <-  .1
-Xlim         <-  c(0, 1)
-Ylim         <-  c(0, 1)
-Marge        <-  .1
-Marge.Left   <-  .1
-Marge.Right  <-  .1
-Plot.New     <-  1
-ShapeAlpha   <-  1
-ShapeBeta    <-  1
-Leg.X        <-  1.05
-Leg.Y        <-  1
-Leg.Labels   <-  seq(1, N)
-Plot.Leg     <-  1
-Leg.Cex.Text <-  1
-Leg.Cex      <-  2
-Chord.Lwd    <-  1
+# N  <- nrow(Data)
+# M  <- ncol(Data)
+# R  <-  100
+# 
+# 
+# Data         <-  array(dim = c(N,N), ceiling(R * runif(N * N)))
+# Chord.Fills  <-  Lib.ColourScheme(N, 5, V = .75, BG = "white", Alpha = .7, Plot = 0 )[3,]
+# Chord.Bords  <-  Lib.ColourScheme(N, 5, V = .75, BG = "white", Alpha = 1,  Plot = 0)[1,]
+# Block.Fills  <-  Lib.ColourScheme(M, 5, V = .75, BG = "white", Alpha = 1,  Plot = 0)[1,]
+# Block.Bords  <-  Lib.ColourScheme(M, 5, V = .75, BG = "white", Alpha = 1,  Plot = 0 )[1,]
+# Block.Lwd    <-  2
+# 
+# Gap          <-  .1
+# Xlim         <-  c(0, 1)
+# Ylim         <-  c(0, 1)
+# Marge        <-  .1
+# Marge.Left   <-  .1
+# Marge.Right  <-  .1
+# Plot.New     <-  1
+# ShapeAlpha   <-  1
+# ShapeBeta    <-  1
+# Leg.X        <-  1.05
+# Leg.Y        <-  1
+# Leg.Labels   <-  seq(1, N)
+# Plot.Leg     <-  1
+# Leg.Cex.Text <-  1
+# Leg.Cex      <-  2
+# Chord.Lwd    <-  1
 
 
 Lib.Alluvial  <-  function(Data, 
@@ -55,25 +56,26 @@ Lib.Alluvial  <-  function(Data,
 if(missing(Data)){Data  <-  Lib.Markov(N= 5)$V}
      
 N  <-  nrow(Data)
+M  <-  ncol(Data)
 
-
+Max.NM  <-  max(N,M)
 
 if(missing(Chord.Fills)){
-     Chord.Fills  <-  Lib.ColourScheme(N, 5, V = .75, BG = "white", Alpha = .7,
+     Chord.Fills  <-  Lib.ColourScheme(Max.NM, 5, V = .75, BG = "white", Alpha = .7,
                                        Plot = 0 )[3,]}
 
 if(missing(Chord.Bords)){
-     Chord.Bords  <-  Lib.ColourScheme(N, 5, V = .75, BG = "white", Alpha = 1 ,
+     Chord.Bords  <-  Lib.ColourScheme(Max.NM, 5, V = .75, BG = "white", Alpha = 1 ,
                                        Plot = 0)[1,]}
 
 
 if(missing(Block.Fills)){
-     Block.Fills  <-  Lib.ColourScheme(N, 5, V = .75, BG = "white", Alpha = 1,
+     Block.Fills  <-  Lib.ColourScheme(Max.NM, 5, V = .75, BG = "white", Alpha = 1,
                                        Plot = 0 )[1,]}
 
 
 if(missing(Block.Bords)){
-     Block.Bords  <-  Lib.ColourScheme(N, 5, V = .75, BG = "white", Alpha = 1,
+     Block.Bords  <-  Lib.ColourScheme(Max.NM, 5, V = .75, BG = "white", Alpha = 1,
                                        Plot = 0 )[1,]}
 
 if(missing(Marge)){Marge              <-  .05}
@@ -105,8 +107,8 @@ Leg.Bords   <-  Block.Bords
 par(xpd = NA)
 
 
-if(is.vector(Chord.Fills)){Chord.Fills  <-  array(dim=c(N,N), Chord.Fills)}
-if(is.vector(Chord.Bords)){Chord.Bords  <-  array(dim=c(N,N), Chord.Bords)}
+if(is.vector(Chord.Fills)){Chord.Fills  <-  array(dim=c(N,M), Chord.Fills)}
+if(is.vector(Chord.Bords)){Chord.Bords  <-  array(dim=c(N,M), Chord.Bords)}
 
 
 Args   <-  list("Data"         = Data, 
@@ -145,36 +147,46 @@ Props       <-  Data / sum(Data) * (1 - Gap)
 A.Y.1       <-  rep(1, N)
 A.Y.0       <-  rep(0, N)
 
-B.Y.1       <-  rep(1, N)
-B.Y.0       <-  rep(0, N)
+B.Y.1       <-  rep(1, M)
+B.Y.0       <-  rep(0, M)
  
-Delta       <-  Gap / (N - 1)
+Delta.A     <-  Gap / (N - 1)
+Delta.B     <-  Gap / (M - 1)
 
 
 for(i in 2:N){
-  A.Y.1[i]  <-  A.Y.1[i - 1] - A.Props[i - 1] - Delta
-  B.Y.1[i]  <-  B.Y.1[i - 1] - B.Props[i - 1] - Delta   
+  A.Y.1[i]  <-  A.Y.1[i - 1] - A.Props[i - 1] - Delta.A
 }
+
+for(i in 2:M){
+  B.Y.1[i]  <-  B.Y.1[i - 1] - B.Props[i - 1] - Delta.B   
+}
+
 
 for(i in 1:N){
   A.Y.0[i]  <-  A.Y.1[i] - A.Props[i]
-  B.Y.0[i]  <-  B.Y.1[i] - B.Props[i]   
+ }
+
+
+for(i in 1:M){
+   B.Y.0[i]  <-  B.Y.1[i] - B.Props[i]   
 }
+
 
 #---- Calculate Y Inner Vals
 
-a.Y.1   <-  array(dim=c(N,N), 1)
-a.Y.0   <-  array(dim=c(N,N), 1)
+a.Y.1   <-  array(dim=c(N,M), 1)
+a.Y.0   <-  array(dim=c(N,M), 1)
 
-b.Y.1   <-  array(dim=c(N,N), 1)
-b.Y.0   <-  array(dim=c(N,N), 1)
+b.Y.1   <-  array(dim=c(N,M), 1)
+b.Y.0   <-  array(dim=c(N,M), 1)
 
 
 a.Y.1[,1]  <-  A.Y.1
 b.Y.1[1,]  <-  B.Y.1
 
-for(i in 2:N){ a.Y.1[,i]  <- a.Y.1[,i - 1]  - Props[ ,i- 1]}
-for(i in 1:N){ a.Y.0[,i]  <- a.Y.1[,i] - Props[ ,i]}
+for(i in 2:M){ a.Y.1[,i]  <- a.Y.1[,i - 1]  - Props[ ,i- 1]}
+for(i in 1:M){ a.Y.0[,i]  <- a.Y.1[,i] - Props[ ,i]}
 
 for(i in 2:N){ b.Y.1[i,]  <- b.Y.1[i - 1, ]  - Props[i- 1, ]}
 for(i in 1:N){ b.Y.0[i,]  <- b.Y.1[i,] - Props[i, ]}
@@ -231,7 +243,7 @@ Theta     <-  pi * pbeta(Omega, ShapeAlpha, ShapeBeta)
 Chords.Y   <-  list()
 
 for(i in 1:N){
-for(j in 1:N){     
+for(j in 1:M){     
   
    k    <-  i + N * (j-1)
    
@@ -259,7 +271,7 @@ if(Plot.New == 1){
 
 
 for(i in 1:N){
-     for(j in 1:N){
+     for(j in 1:M){
           
           k    <-  i + N * (j-1)   
           
@@ -279,6 +291,9 @@ for(i in 1:N){
      Y   <-  c(A.Y.0[i], A.Y.1[i], A.Y.1[i], A.Y.0[i]) 
      
      polygon(X, Y, col = Block.Fills[i], border = Block.Bords[i], lwd = Block.Lwd)
+}
+ 
+for(i in 1:M){    
      
      X   <-  c(B.X.0, B.X.0, B.X.1, B.X.1)
      Y   <-  c(B.Y.0[i], B.Y.1[i], B.Y.1[i], B.Y.0[i]) 
