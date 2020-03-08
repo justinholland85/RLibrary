@@ -35,7 +35,7 @@ Lib.Hist.Breaks  	<-  	function(X, Breaks){
   
   Counts 	<-  	array(dim=(N-1))
   for(i in 1:(N-1)){
-    Counts[i]  	<-  	sum( Lower[i] <= X & X < Upper[i], na.rm = TRUE )
+    Counts[i]  	<-  	sum(Lower[i] <= X & X < Upper[i], na.rm = TRUE)
   }
   
   Freq  	<-  	Counts / sum(Counts)
@@ -50,9 +50,17 @@ Lib.Hist.Breaks  	<-  	function(X, Breaks){
 
 ##############################################################################
 Lib.ColsToList	<-	function(X){
-return(split(X, rep(1:ncol(X), each = nrow(X))))
+ 
+  List   <-  list()
+  
+  for(i in 1:ncol(X)){
+    
+    List[[i]]  <-  X[,i]
+  }
+  
+  return(List)
 }
-
+  
 ##############################################################################
 
 

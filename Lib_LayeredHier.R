@@ -21,7 +21,7 @@ if(missing(Text.Cex)){Text.Cex <-  1}
 if(length(Text.Cex) < N + 1){Text.Cex  <-  c(Text.Cex,rep(Text.Cex[length(Text.Cex)],N + 2 - length(Text.Cex)))}
 if(missing(BG)){BG	<-	"gray21"}
 if(missing(Ref)){Ref  <-  sort(unique(c(Cats)))}
-if(missing(Colours)){ Colours  <-  Lib.ColourScheme(length(Ref),4, V=1)[3,] }
+if(missing(Colours)){ Colours  <-  Lib.ColourScheme(length(Ref),4, V=1, Plot = 0)[3,] }
 if(missing(BorderCols)){ BorderCols  <-  rep("black", length(Ref)) }
 if(missing(FlipAx)){ FlipAx  <-  0}
 if(missing(Main)){ Main  <-  ""}
