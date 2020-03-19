@@ -245,6 +245,17 @@ Lib.NAN.To.Zero   <-  function(X){
 
 ####
 
+Lib.NAN.To.Val   <-  function(X, v){
+  
+  X[which(is.nan(X))]  <-  v
+  
+  return(X)
+  
+}
+
+
+####
+
 Lib.Inf.To.Zero   <-  function(X){
   
   X[which(is.infinite(X))]  <-  0

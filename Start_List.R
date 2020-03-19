@@ -47,6 +47,8 @@ source("Lib_Matrix_CellRef_Extract.R")
 source("Lib_Rbind_DF.R")
 source("Lib_ApplyMap.R")
 source("Lib_Quantiles.R")
+source("Lib_RowMax.R")
+source("Lib_CumSum.R")
 
 # Strings
 source("Lib_LoopedGrep.R")
