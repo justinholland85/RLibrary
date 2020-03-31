@@ -8,7 +8,7 @@
 
 
 #--- Dell2014:
-# source("C:/Users/Justin/Documents/Model/R Center/R Library/Start.R")
+# source("C:/Users/Justin/Documents/GitHub/RLibrary/Start.R")
 
 #--- RAB RADLAB:
 # source("/home/rucwa6/gitlab/pal_revenue_analysis/Personal_Codes/Justin/R_Library/Start.R")
@@ -21,10 +21,10 @@
 # Function Library Directory:
 
 #--- Dell2014:
-#Lib.Dir  <-  "C:/Users/Justin/Documents/Model/R Center/R Library/"
+Lib.Dir  <-  "C:/Users/Justin/Documents/GitHub/RLibrary"
 
 #--- Alien2016
-Lib.Dir  <-  "C:/Users/justi/Documents/GitHub/RLibrary/"
+# Lib.Dir  <-  "C:/Users/justi/Documents/GitHub/RLibrary/"
 
 #--- Work
 #Lib.Dir  <-  "/rab3/Playground/Justin/Code/R Library"
