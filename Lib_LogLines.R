@@ -32,7 +32,7 @@ Lib.LogLines  <-  function(Min, Max){
   
   
   Labels.Seq  <-  seq(SuperMin, SuperMax)  
-  Labels      <-  c("-1t","-100b","-10b","-1b", "-100m","-10m","-1m","-100k","-10k","-1k","-100","-10",0,
+  Labels      <-  c("-1t","-100","-10b","-1b", "-100m","-10m","-1m","-100k","-10k","-1k","-100","-10",0,
                        "10", "100", "1k", "10k", "100k", "1m","10m", "100m", "1b","10b","100b","1t")
   
   # 
@@ -53,9 +53,45 @@ Lib.LogLines  <-  function(Min, Max){
   }
   
   
+######################################################################################################
+# LogLines.True will do a proper logarithmic plot, all postive    
+Lib.LogLines.True  <-  function(Min, Max){
   
-    
+  SuperMin  <-  -12
+  SuperMax  <-  12
+  
+  
+  Lines  <- numeric(0)
 
+  for(i in (SuperMin + 1):(SuperMax - 1)){
+    
+    Add <-seq(1:9) * (10 ^ i)
+    Lines  <- c(Lines, Add)
+  }
+  
+  Labels.Seq  <-  seq(SuperMin, SuperMax)  
+
+  Labels      <-  c("1p" ,"10p", "100p" ,"1n" ,"10n", "100n", "1mu" ,"10mu", "100mu", "1mi", "10mi","100mi",
+                    "1","10", "100", "1k", "10k", "100k", "1M","10M", "100M", "1G","10G",
+                    "100G","1T")
+  
+  
+  Lines.AxtVal     <-  log(Lines, 10)  
+  
+  Axt.Lines.Val    <-  Lines[which(Min <= Lines.AxtVal & Lines.AxtVal <= Max)]
+  Axt.Lines.LogVal <-  log(Axt.Lines.Val, 10)
+  
+  Axt.Tick.Val     <-  Labels.Seq[which(Min  <= Labels.Seq & Labels.Seq <= Max)]
+  Axt.Tick.Label   <-  Labels[which(Min  <= Labels.Seq & Labels.Seq <= Max)]
+  
+  Output  <-  list("Axt.Lines.Val" = Axt.Lines.Val,
+                   "Axt.Lines.LogVal" = Axt.Lines.LogVal,
+                   "Axt.Tick.Val" = Axt.Tick.Val,
+                   "Axt.Tick.Label" = Axt.Tick.Label)
+  
+  return(Output)
+
+}
   
   
   

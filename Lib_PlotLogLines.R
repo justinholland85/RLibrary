@@ -82,7 +82,7 @@ Lib.PlotLogLines.Y  <-  function(PlotAxis,  X.Lim, Y.Min, Y.Max, X.Min, X.Max,
 }
 ######################################################################################################
 
-Lib.PlotLogLines.X  <-  function(PlotAxis, X.Min, X.Max, Y.Min, Y.Max,
+Lib.PlotLogLines.X  <-  function(PlotAxis, Y.Lim, X.Lim, X.Min, X.Max, Y.Min, Y.Max,
                                  Lwd.Big, Col.Big, Lty.Big, Lwd.Small, Col.Small, Lty.Small){
   
   if(missing(PlotAxis)){PlotAxis  <- 1}
@@ -100,6 +100,12 @@ Lib.PlotLogLines.X  <-  function(PlotAxis, X.Min, X.Max, Y.Min, Y.Max,
   if(missing(Lwd.Small)){Lwd.Small  <-  Lwd.Big / 2}
   if(missing(Lty.Small)){Lty.Small  <-  2}
   if(missing(Col.Small)){Col.Small  <-  Col.Big }
+  
+  if(!missing(X.Lim)){X.Min  <-  X.Lim[1] 
+                      X.Max  <-  X.Lim[2]}
+  
+  if(!missing(Y.Lim)){Y.Min   <-  Y.Lim[1] 
+                      Y.Max   <-  Y.Lim[2]}
   
   
   
