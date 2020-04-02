@@ -131,13 +131,31 @@ Lib.Axis.PosNeg  <-  function(X){
   
 }
 
-
-
 #####################################################################################################
+
 Lib.Axis.Range  <-  function(X){
   
   Min       <-  min(X, na.rm = TRUE)
   Max       <-  max(X, na.rm = TRUE)
+  
+  First     <-  Lib.Axis(abs(Min) + abs(Max))
+  Delta     <-  First$Delta
+  
+  MinRound  <-   Lib.Mround(Min, Delta, Dir = 1)
+  MaxRound  <-   Lib.Mround(Max, Delta, Dir = 1)
+  
+  Axis      <-  Lib.Axis(MaxRound - MinRound, Shift = MinRound)
+  
+  return(Axis)
+  
+}
+
+
+#####################################################################################################
+Lib.Axis.Neg  <-  function(X){
+  
+  Min       <-  min(X, na.rm = TRUE)
+  Max       <-  max(0, na.rm = TRUE)
   
   First     <-  Lib.Axis(abs(Min) + abs(Max))
   Delta     <-  First$Delta
@@ -151,9 +169,29 @@ Lib.Axis.Range  <-  function(X){
   
 }
 
+#####################################################################################################
 
-
-
+Lib.Axis.Smart  <-  function(X){
+  
+  
+  Min       <-  min(X)   
+  Max       <-  max(X)
+  
+  Type.Pos    <-  Min >= 0 
+  Type.Neg    <-  Max <= 0 
+  Type.PosNeg <-  Min < 0 & Max > 0
+  
+  Type        <-  c("Pos", "Neg", "PosNeg")[which(c(Type.Pos, Type.Neg, Type.PosNeg))]
+  
+  #----
+  
+  if(Type == "Pos"){   Axis    <-  Lib.Axis(X) }
+  if(Type == "Neg"){   Axis    <-  Lib.Axis.Neg(X) }
+  if(Type == "PosNeg"){Axis    <-  Lib.Axis.Range(X) }
+  
+  return(Axis)
+  
+}
 
 
 
