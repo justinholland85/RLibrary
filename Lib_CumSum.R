@@ -63,3 +63,16 @@ Lib.ProbVec <-  function(u, X, n){
 }
 
 ######################################################################################################
+
+# Arbitrary Uniform Weight
+Lib.Arb.Unif.Weight <-  function(N, Min, Max){
+  
+  if(missing(Min)){Min  <-  1}
+  if(missing(Max)){Max  <-  100}
+  
+  Omega  <-  runif(N, Min, Max)
+  P      <-  Omega / sum(Omega)
+  
+  return(P)
+  
+}
