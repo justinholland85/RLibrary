@@ -91,7 +91,7 @@ Lib.Legend.Horiz  <-  function(Labels, X0, X1 , Y0, Y1, Gap, Cols, PointSize, Te
   
   if(missing(X0)){X0  <-  X.Lim[1]}
   if(missing(X0)){X1  <-  X.Lim[2]}
-  if(missing(Y0)){Y0  <-  -5  * (Y.Lim[2] - Y.Lim[1])}
+  if(missing(Y0)){Y0  <-  -.15  * (Y.Lim[2] - Y.Lim[1])}
   if(missing(Y1)){Y1  <-  -.35 * (Y.Lim[2] - Y.Lim[1])}
   
   N  <-  length(Labels)
