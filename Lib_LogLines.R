@@ -212,7 +212,7 @@ Axis.Pos.Ticks  <-    MagScale * pmax((N.Mags.Neg - 1),0) + Center.Gap +
 Axis.Pos.Labels <-   PosSeq$Axt.Tick.Label
 
 if(Plot.New != 0){
-Lib.Plot.Blank(Y0 = Y.Lim[1], Y1 = Y.Lim[2], Xlab = X.Lab, Ylab = Y.Lab, Main = Main)
+Lib.Plot.Blank(Y0 = Y.Lim[1], Y1 = Y.Lim[2], X.Lab = X.Lab, Y.Lab = Y.Lab, Main = Main)
 }
 
 par(xpd = NA)
@@ -329,7 +329,7 @@ Lib.LogPlotWindow.Y  <-  function(MaxPos, MaxNeg, Min, Center.Gap, X.Lim, Col, L
   Axis.Pos.Labels <-   PosSeq$Axt.Tick.Label
   
   if(Plot.New != 0){
-  Lib.Plot.Blank(X0 = X.Lim[1], X1 = X.Lim[2], Xlab = X.Lab, Ylab = Y.Lab, Main = Main)
+  Lib.Plot.Blank(X0 = X.Lim[1], X1 = X.Lim[2], X.Lab = X.Lab, Y.Lab = Y.Lab, Main = Main)
   }
   
   par(xpd = NA)
@@ -480,7 +480,19 @@ Lib.LogPlot.GoodMin   <-  function(X, r){
   Choice        <-  Test.Orders[Lib.NumericNames(Table)[which(Table >= r)]][1]
   
 }
+######################################################################################################
 
+Lib.Log.Mags   <-  function(X){
 
+if(min(X) < 0){MaxNeg.X  <-   ceiling(log(abs(min(X)), 10)) } else {
+  MaxNeg.X  <- X.Scale.Min }
+  
+if(max(X) > 0){MaxPos.X  <-   ceiling(log(abs(max(X)), 10)) } else {
+  MaxPos.X  <- X.Scale.Min }
+  
+Output   <-  list("Pos" = MaxPos.X,
+                  "Neg" = MaxNeg.X)
+return(Output)
+}
 
 
