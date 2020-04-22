@@ -28,20 +28,7 @@
 ######################################################################################################
 
 
-Lib.Plot.Blank  <-  function(X1, Y1, X0, Y0, Xlab, Ylab, Main){
-  
-  if(missing(X1)){  X1      <-  1}
-  if(missing(Y1)){  Y1      <-  1}
-  if(missing(X0)){  X0      <-  0}
-  if(missing(Y0)){  Y0      <-  0}
-  if(missing(Xlab)){Xlab    <-  ""}
-  if(missing(Ylab)){Ylab    <-  ""}
-  if(missing(Main)){Main    <-  ""}
-  
-  plot(c(X0,X1), c(Y0,Y1), type='n', bty='n', xaxt ='n', yaxt='n', 
-       xlab = Xlab, ylab = Ylab, main = Main)
-  
-}
+
 ######################################################################################################
 
 Lib.ColourScheme3D	<-	function(N.X,N.Y,N.Z,Plot,Cex,Alpha,BG,

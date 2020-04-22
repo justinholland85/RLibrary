@@ -144,7 +144,7 @@ Lib.LogHist  <-  function(X, Min, Max, Max.Neg){
 
 ######################################################################################################
 
-Lib.LogPlotWindow.X  <-  function(MaxPos, MaxNeg, Min, Center.Gap, Y.Lim, Col, Lwd, Lty, 
+Lib.LogPlotWindow.X  <-  function(MaxPos, MaxNeg, LogMin, Center.Gap, Y.Lim, Col, Lwd, Lty, 
                                   X.Lab, Y.Lab, Main, Srt, Cex, Y.Text.Par, Plot.New,
                                   Line.Lims.1 , Line.Lims.2){
   
@@ -159,7 +159,7 @@ if(missing(X.Lab)){X.Lab <- ""}
 if(missing(Main)){Main <- ""}
 if(missing(Plot.New)){Plot.New <- 1}
   
-if(missing(Y.Text.Par)){Y.Text.Par <- -.15 * (Y.Lim[2] - Y.Lim[1])}
+if(missing(Y.Text.Par)){Y.Text.Par <- -.15 }
   
 Delta.Y  <-   (Y.Lim[2] - Y.Lim[1])
   
@@ -170,17 +170,17 @@ if(missing(Cex)){Cex <- .75}
 if(missing(Line.Lims.1)){Line.Lims.1  <-  Y.Lim}
 if(missing(Line.Lims.2)){Line.Lims.2  <-  c(NA, NA)}
   
-if(missing(Min)){Min <- 0}
+if(missing(LogMin)){LogMin <- 0}
 if(missing(Center.Gap)){Center.Gap     <- .05}
 
-Do.Neg          <-  MaxNeg > Min
-Do.Pos          <-  MaxPos > Min
+Do.Neg          <-  MaxNeg > LogMin
+Do.Pos          <-  MaxPos > LogMin
   
 if(!Do.Neg){MaxNeg <-  -Inf}
 if(!Do.Pos){MaxPos <-  -Inf}
 
-PosSeq          <-  Lib.LogLines.True(Min, MaxPos)
-NegSeq          <-  lapply(Lib.LogLines.True(Min, MaxNeg), rev)
+PosSeq          <-  Lib.LogLines.True(LogMin, MaxPos)
+NegSeq          <-  lapply(Lib.LogLines.True(LogMin, MaxNeg), rev)
 
 
 MagPoints.Neg   <-  NegSeq$Axt.Tick.Val
@@ -376,8 +376,9 @@ Lib.LogPlotWindow.Y  <-  function(MaxPos, MaxNeg, Min, Center.Gap, X.Lim, Col, L
 ######################################################################################################
 Lib.LogPlotWindow.Scale  <-  function(X, MaxPos, MaxNeg, Min, Center.Gap){
   
-  # This fucntion goes directly with Lib.LogPlotWindow.X, changes to that fucntion
+  # This function goes directly with Lib.LogPlotWindow.X, changes to that fucntion
   # may require changes to this one
+  
   if(missing(Min)){Min <- 0}
   if(missing(Center.Gap)){Center.Gap     <- .05}
   
@@ -416,6 +417,10 @@ Lib.LogPlotWindow.Scale  <-  function(X, MaxPos, MaxNeg, Min, Center.Gap){
   MapToScale[which(IsNeg)]   <-  MapToScale.Neg[which(IsNeg)]
   MapToScale[which(IsPos)]   <-  MapToScale.Pos[which(IsPos)]
   MapToScale[which(IsZero)]  <-  MapToScale.Zero
+  
+  #-- need to remove points lying in the gap (and non zero)
+  
+  MapToScale[which(log(abs(X),10) < Min & X != 0 )]  <-  NA
   
   return(MapToScale)
   
@@ -482,17 +487,22 @@ Lib.LogPlot.GoodMin   <-  function(X, r){
 }
 ######################################################################################################
 
-Lib.Log.Mags   <-  function(X){
+Lib.Log.Mags   <-  function(X, LogMin){
 
+if(missing(LogMin)){LogMin  <- Lib.LogPlot.GoodMin(X)}
+  
 if(min(X) < 0){MaxNeg.X  <-   ceiling(log(abs(min(X)), 10)) } else {
-  MaxNeg.X  <- X.Scale.Min }
+  MaxNeg.X  <- LogMin }
   
 if(max(X) > 0){MaxPos.X  <-   ceiling(log(abs(max(X)), 10)) } else {
-  MaxPos.X  <- X.Scale.Min }
+  MaxPos.X  <- LogMin }
   
-Output   <-  list("Pos" = MaxPos.X,
-                  "Neg" = MaxNeg.X)
+  Output   <-  list("Pos" = MaxPos.X,
+                    "Neg" = MaxNeg.X,
+                    "Min" = LogMin)
+  
 return(Output)
+  
 }
 
 

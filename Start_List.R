@@ -34,7 +34,6 @@ source("Lib_BarPlotStacked.R")
 source("Lib_TrafficLightPlot.R")
 source("Lib_Plot_Blank.R")
 
-
 # Data 
 source("Lib_RangeNames.R")
 source("Lib_Hist.R")
@@ -50,6 +49,10 @@ source("Lib_ApplyMap.R")
 source("Lib_Quantiles.R")
 source("Lib_RowMax.R")
 source("Lib_CumSum.R")
+
+# General Analytics
+source("Lib_GeneralAnalytics_1D.R")
+source("Lib_GeneralAnalytics_1D_DummyData.R")
 
 # Strings
 source("Lib_LoopedGrep.R")
