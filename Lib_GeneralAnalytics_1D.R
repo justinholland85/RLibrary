@@ -3,6 +3,8 @@
 
 Lib.GA.1D.Hist.Basic  <-  function(X, N, Col){
 
+  X.Name  <-  ""
+  
 if(missing(X)){X  <-  Lib.GA.1D.RandFunc()}  
   
 par(mar =  c(6.1, 4.1, 4.1, 2.1))
@@ -44,6 +46,8 @@ points(Hist$Centres, Hist$Counts, pch = 21, bg = Col )
 
 Lib.GA.1D.Hist.LogX  <-  function(X,LogMin, Col ){
  
+  X.Name  <-  ""
+  
    if(missing(X)){X  <-  Lib.GA.1D.RandFunc()}  
   par(mar =  c(6.1, 4.1, 4.1, 2.1))
   
@@ -95,6 +99,8 @@ points(Scales.Centres, Counts, pch = 21, bg = Col )
 
 Lib.GA.1D.Hist.LogCount  <-  function(X, N, LogMin, Col ){
   
+  X.Name  <-  ""
+  
  if(missing(X)){X  <-  Lib.GA.1D.RandFunc()}  
  if(missing(Col)){Col  <-  "blue"}
   par(mar =  c(6.1, 4.1, 4.1, 2.1))
@@ -142,7 +148,9 @@ points(Centres, Scales.Counts, pch = 21, bg = Col )
 # Log Log Histogram 
 
 Lib.GA.1D.Hist.LogLog  <-  function(X, LogMin.X, LogMin.Count, Col ){
-
+  
+  X.Name  <-  ""
+  
   par(mar =  c(6.1, 4.1, 4.1, 2.1))
   
 if(missing(X)){X  <-  Lib.GA.1D.RandFunc()}   
@@ -204,7 +212,8 @@ points(Scale.Centres, Scale.Counts, pch = 21, bg = Col)
 # CumDists
 
 Lib.GA.1D.CumDist.Basic  <-  function(X, Col ){
-
+ 
+   X.Name  <-  ""
 if(missing(X)){X  <-  Lib.GA.1D.RandFunc()}  
 if(missing(Col)){Col  <-  "blue"}
   
@@ -247,6 +256,8 @@ points(X.Quants, Y, pch=21, bg=Col)
 
 Lib.GA.1D.CumDist.Log  <-  function(X, Col){
 
+  X.Name  <-  ""
+  
 if(missing(Col)){Col  <-  "blue"}  
 if(missing(X)){X  <-  Lib.GA.1D.RandFunc()}  
   
