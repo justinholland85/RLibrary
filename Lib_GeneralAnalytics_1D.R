@@ -7,7 +7,7 @@ Lib.GA.1D.Hist.Basic  <-  function(X, N, Col, X.Name, Main, X.Lab, Y.Lab ){
 if(missing(X)){X  <-  Lib.GA.1D.RandFunc()}  
 if(missing(X.Name)){X.Name  <- "X"}  
 if(missing(Main)){Main  <-  "Histogram: X ~ Count" }
-if(missing(X.Lab)){X.Lab  <-  paste0("Histogram: ", X.Name, " ~ Count") }
+if(missing(X.Lab)){X.Lab  <-  paste0(X.Name , " [Bin Centres]") }
 if(missing(Y.Lab)){Y.Lab  <-   "Count"} 
 
 par(mar =  c(6.1, 4.1, 4.1, 2.1))
