@@ -1,7 +1,7 @@
 ######################################################################################################
 # Histogram of X
 
-Lib.GA.1D.Hist.Basic  <-  function(X, N, Col, X.Name){
+Lib.GA.1D.Hist.Basic  <-  function(X, N, Col, X.Name, Main, X.Lab, Y.Lab ){
 
   
 if(missing(X)){X  <-  Lib.GA.1D.RandFunc()}  
