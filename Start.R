@@ -14,14 +14,13 @@
 # source("/home/rucwa6/gitlab/pal_revenue_analysis/Personal_Codes/Justin/R_Library/Start.R")
 
 
-
 ######################################################################################################
 #$$$$$ Need to change the Library directory, nothing else:
 
 # Function Library Directory:
 
 #--- Dell2014:
-Lib.Dir  <-  "C:/Users/Justin/Documents/GitHub/RLibrary"
+#Lib.Dir  <-  "C:/Users/Justin/Documents/GitHub/RLibrary"
 
 #--- Alien2016
 # Lib.Dir  <-  "C:/Users/justi/Documents/GitHub/RLibrary/"
@@ -31,6 +30,16 @@ Lib.Dir  <-  "C:/Users/Justin/Documents/GitHub/RLibrary"
 
 #--- RAB RADLAB
 #Lib.Dir  <- "/home/rucwa6/gitlab/pal_revenue_analysis/Personal_Codes/Justin/R_Library"
+
+
+######################################################################################################
+
+PathMap   <-  list("DESKTOP-MLKCE7A" = "C:/Users/justi/Documents/GitHub/RLibrary/")
+
+NodeName  <-  Sys.info()["nodename"]
+
+Lib.Dir   <-  PathMap[[NodeName]]
+
 
 setwd(Lib.Dir)
 source("Start_List.R")

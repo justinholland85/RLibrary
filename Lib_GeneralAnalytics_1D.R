@@ -1,12 +1,15 @@
 ######################################################################################################
 # Histogram of X
 
-Lib.GA.1D.Hist.Basic  <-  function(X, N, Col){
+Lib.GA.1D.Hist.Basic  <-  function(X, N, Col, X.Name){
 
-  X.Name  <-  "X"
   
 if(missing(X)){X  <-  Lib.GA.1D.RandFunc()}  
-  
+if(missing(X.Name)){X.Name  <- "X"}  
+if(missing(Main)){Main  <-  "Histogram: X ~ Count" }
+if(missing(X.Lab)){X.Lab  <-  paste0("Histogram: ", X.Name, " ~ Count") }
+if(missing(Y.Lab)){Y.Lab  <-   "Count"} 
+
 par(mar =  c(6.1, 4.1, 4.1, 2.1))
   
 if(missing(N))  {N    <-  51}
@@ -23,9 +26,6 @@ Hist      <-  Lib.Hist.Breaks(X, Breaks)
 
 Y.Axis    <-  Lib.Axis(Hist$Counts) 
 
-X.Lab     <-  "X [Bin Centres] "
-Y.Lab     <-  "Count"
-Main      <-  "Histogram: X ~ Count"
 
 Lib.Plot.Blank(X.Lim  = X.Lim, 
                Y.Lim  = Y.Axis$Lim, 
