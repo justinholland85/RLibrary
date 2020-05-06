@@ -49,6 +49,8 @@ source("Lib_ApplyMap.R")
 source("Lib_Quantiles.R")
 source("Lib_RowMax.R")
 source("Lib_CumSum.R")
+source("Lib_Mround.R")
+source("Lib_SeqOn.R")
 
 # General Analytics
 source("Lib_GeneralAnalytics_1D.R")
@@ -56,10 +58,6 @@ source("Lib_GeneralAnalytics_1D_DummyData.R")
 
 # Strings
 source("Lib_LoopedGrep.R")
-
-# Basic
-source("Lib_Mround.R")
-source("Lib_SeqOn.R")
 
 
 # Organise
@@ -78,6 +76,7 @@ source("Lib_Markov.R")
 # Admin
 source("Lib_GuessDelim.R")
 source("Lib_Table_To_DF.R")
+source("Lib_Load.R")
 
 # Numeric
 source("Lib_LogScale.R")
