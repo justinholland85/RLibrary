@@ -34,7 +34,8 @@
 
 ######################################################################################################
 
-PathMap   <-  list("DESKTOP-MLKCE7A" = "C:/Users/justi/Documents/GitHub/RLibrary/")
+PathMap   <-  list("DESKTOP-MLKCE7A" = "C:/Users/justi/Documents/GitHub/RLibrary/",
+                   "DELL2014"        = "C:/Users/Justin/Documents/GitHub/RLibrary")
 
 NodeName  <-  Sys.info()["nodename"]
 

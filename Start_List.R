@@ -77,6 +77,7 @@ source("Lib_Markov.R")
 source("Lib_GuessDelim.R")
 source("Lib_Table_To_DF.R")
 source("Lib_Load.R")
+source("Lib_Dim.R")
 
 # Numeric
 source("Lib_LogScale.R")

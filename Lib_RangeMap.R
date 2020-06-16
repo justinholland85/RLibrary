@@ -21,4 +21,18 @@ Lib.RangeMap  <-  function(X,R){
   
 }
 
+######################################################################################################
+
+Lib.RangeMap.Cut  <-  function(X,R){ 
+
+Cut     <-  cut(X, breaks = R, right = FALSE, include.lowest = TRUE )
+Levels  <-  levels(Cut)
+
+Value   <-  Lib.NA.To.Zero(as.numeric(Cut))
+
+return(Value)
+
+
+}
+
 
