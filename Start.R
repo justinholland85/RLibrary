@@ -3,6 +3,9 @@
 # Work
 # source("/rab3/Playground/Justin/Code/R Library/Start.R")
 
+#--- Alien2021:
+# source("C:/Users/justi/Documents/GitHub/RLibrary/Start.R")
+
 #--- Alien2016:
 # source("C:/Users/justi/Documents/GitHub/RLibrary/Start.R")
 
@@ -22,8 +25,12 @@
 #--- Dell2014:
 #Lib.Dir  <-  "C:/Users/Justin/Documents/GitHub/RLibrary"
 
+#--- Alien2021
+# Lib.Dir  <-  "C:/Users/justi/Documents/GitHub/RLibrary/"
+
 #--- Alien2016
 # Lib.Dir  <-  "C:/Users/justi/Documents/GitHub/RLibrary/"
+
 
 #--- Work
 #Lib.Dir  <-  "/rab3/Playground/Justin/Code/R Library"
@@ -35,7 +42,8 @@
 ######################################################################################################
 
 PathMap   <-  list("DESKTOP-MLKCE7A" = "C:/Users/justi/Documents/GitHub/RLibrary/",
-                   "DELL2014"        = "C:/Users/Justin/Documents/GitHub/RLibrary")
+                   "DELL2014"        = "C:/Users/Justin/Documents/GitHub/RLibrary",
+                   "ALIEN2021"       = "C:/Users/justi/Documents/GitHub/RLibrary/")
 
 NodeName  <-  Sys.info()["nodename"]
 
