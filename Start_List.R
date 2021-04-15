@@ -33,6 +33,7 @@ source("Lib_Grids.R")
 source("Lib_BarPlotStacked.R")
 source("Lib_TrafficLightPlot.R")
 source("Lib_Plot_Blank.R")
+source("Lib_TextTable.R")
 
 # Data 
 source("Lib_RangeNames.R")
@@ -51,6 +52,8 @@ source("Lib_RowMax.R")
 source("Lib_CumSum.R")
 source("Lib_Mround.R")
 source("Lib_SeqOn.R")
+source("Lib_InvertedFill.R")
+source("Lib_DF_Unlist.R")
 
 # General Analytics
 source("Lib_GeneralAnalytics_1D.R")
@@ -77,7 +80,6 @@ source("Lib_Markov.R")
 source("Lib_GuessDelim.R")
 source("Lib_Table_To_DF.R")
 source("Lib_Load.R")
-source("Lib_Dim.R")
 
 # Numeric
 source("Lib_LogScale.R")
