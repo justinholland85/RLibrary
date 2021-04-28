@@ -83,6 +83,7 @@ source("Lib_Load.R")
 
 # Numeric
 source("Lib_LogScale.R")
+source("Lib_Between.R")
 
 # Touples
 source("Lib_Tuple_Count.R")
