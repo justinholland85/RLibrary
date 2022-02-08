@@ -22,3 +22,34 @@ Lib.Mround  <-  function(X,M,Dir){
 }
 
 
+######################################################################################################
+
+Lib.PrintNumber   <-  function(X){
+  
+  
+  
+  K1    <-  ceiling(log(X, 1000 ))
+  
+  
+  Parts    <-  list()
+  
+  for(i in 1:K1){
+    
+    Parts[[i]]   <-  floor(X  / (1000 ^ (i - 1))) %% 1000
+    
+  }
+  
+  
+  
+  Parts       <-  rev(Parts)
+  P1          <-  Parts[[1]]
+  
+  Parts       <-  lapply(Parts, Lib.LeadingZeros, 3)
+  Parts[[1]]  <-  P1
+  
+  
+  Y  <-  paste0(Parts, collapse = ",")
+  
+  return(Y)
+  
+}
