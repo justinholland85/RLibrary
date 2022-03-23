@@ -1,7 +1,7 @@
 
 Lib.FactorAsCharacter <-  function(X){
   
-  if(class(X) == "factor"){X  <-   as.character(X)}
+  if(class(X)[1] == "factor"){X  <-   as.character(X)}
   return(X)
 }
 
