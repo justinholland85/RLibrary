@@ -1,4 +1,29 @@
 
+#Eps  <-  0
+#Min.Plot <-  0.001
+#Min.Text <-  0.005
+#Text.Cex <-  1
+#Text.Cex  <-  c(Text.Cex,rep(Text.Cex[length(Text.Cex)],N + 2 - length(Text.Cex)))
+#BG	<-	"gray21"
+#Ref  <-  sort(unique(c(Cats)))
+#Colours  <-  Lib.ColourScheme(length(Ref),4, V=1, Plot = 0)[3,]
+#BorderCols  <-  rep("black", length(Ref))
+#FlipAx  <-  0
+#Main  <-  ""
+#Plot.New  <-  1
+#Xmin  <-  0
+#Xmax  <-  1
+#Ymin  <-  0
+#Ymax  <-  1
+#Text.FirstOnly  <-  1
+
+
+
+
+
+
+
+
 
 Lib.LayeredHier  <-  function(Cats, Values, Ref, Colours, BorderCols,
 					Min.Plot, Min.Text, Text.Cex, BG, Eps,
