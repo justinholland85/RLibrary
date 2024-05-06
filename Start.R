@@ -48,7 +48,8 @@
 PathMap   <-  list("DESKTOP-MLKCE7A" = "C:/Users/justi/Documents/GitHub/RLibrary/",
                    "DELL2014"        = "C:/Users/Justin/Documents/GitHub/RLibrary",
                    "ALIEN2021"       = "C:/Users/justi/Documents/GitHub/RLibrary/",
-                   "09503289-TMP449" = "C:/Users/09503289/Desktop/R - Codes/Justins Codes"
+                   "09503289-TMP449" = "C:/Users/09503289/Desktop/R - Codes/Justins Codes",
+                   "DESKTOP-87M804Q" = "C:/Users/nickm/OneDrive/Documents/Coding/RLibrary-master"
                    )
 
 NodeName  <-  Sys.info()["nodename"]

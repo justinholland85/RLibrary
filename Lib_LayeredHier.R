@@ -27,7 +27,7 @@
 
 Lib.LayeredHier  <-  function(Cats, Values, Ref, Colours, BorderCols,
 					Min.Plot, Min.Text, Text.Cex, BG, Eps,
-					FlipAx, Main, Plot.New, Xmin, Xmax, Ymin, Ymax, Text.FirstOnly){
+					FlipAx, Main, Plot.New, Xmin, Xmax, Ymin, Ymax, Text.FirstOnly, Text.On){
 
 # Cats is a text matrix, columns are levels
 # Values is a vector of case weights equivalent length to rows in Cats
@@ -56,7 +56,7 @@ if(missing(Xmax)){ Xmax  <-  1}
 if(missing(Ymin)){ Ymin  <-  0}
 if(missing(Ymax)){ Ymax  <-  1}
 if(missing(Text.FirstOnly)){ Text.FirstOnly  <-  1}
-
+if(missing(Text.On)){ Text.On  <-  1}
 
 
 BG0  <-  par()$bg
@@ -87,7 +87,7 @@ Tapply.Order	<-  order(Group.Order[match(names(Tapply),Group.String)])
 Tapply		<-  Tapply[Tapply.Order]
 
 Proportions  	<-  Tapply / sum(Tapply)
-X  			<-  cumsum(Proportions)
+X  		           	<-  cumsum(Proportions)
 Plot.Xpoints[[1]] <-  c(0,X)
 
 
@@ -177,13 +177,14 @@ polygon(c(Y0,Y1,Y1,Y0),c(X0,X0,X1,X1),col=Col,border=Col)
 }
 }
 
+if(Text.On){
 if(Text.FirstOnly == 0 | i == 1){
 if(X.Share > Min.Text){
 if(FlipAx ==0){
 text(Text.X, Text.Y, labels=Text, col= Border, cex = Plot.Text.Cex)
 } else {
 text(Text.Y, Text.X, labels=Text, col= Border, cex = Plot.Text.Cex)
-}}}
+}}}}
 
 
 
