@@ -124,7 +124,37 @@ Lib.Tuple.MinMax  <-  function(..., DF, Var, Names){
 
 
 
+######################################################################################################
 
+Lib.Aggregate <-  function(..., DF, Var, Names){
+  # Requires data.table  
+  
+  if(missing(DF)){
+    DT         <-  data.table(...)} else {
+      DT         <-  data.table(DF) }
+  
+  if(missing(Names)){Names.DT     <-  names(DT)} else {Names.DT  <-  Names}
+  
+  names(DT)    <-  Names.DT
+  
+  DT.Orig      <-  DT
+  
+  DT           <-  data.table(DT, Var)
+  
+  
+  Index        <-  DT[ , .(Sum = sum(Var)),
+                       by = Names.DT]
+  
+  Order        <-  do.call(order, as.list(Index[,..Names.DT]))
+  Index        <-  Index[Order,]
+  
+  Output       <-  list("Sum"         = Index$Sum,
+                        "Index"       = Index[,..Names.DT],
+                        "Full"        = Index)
+  
+  return(Output)
+  
+}
 
 
 

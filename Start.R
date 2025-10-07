@@ -16,6 +16,10 @@
 #--- RAB RADLAB:
 # source("/home/rucwa6/gitlab/pal_revenue_analysis/Personal_Codes/Justin/R_Library/Start.R")
 
+#--- Nick Laptop ("09503289-TMP449")
+# source("C:/Users/09503289/Desktop/R - Codes/Justins Codes/Start.R")
+
+
 
 ######################################################################################################
 #$$$$$ Need to change the Library directory, nothing else:
@@ -46,6 +50,8 @@ PathMap   <-  list("DESKTOP-MLKCE7A" = "C:/Users/justi/Documents/GitHub/RLibrary
                    "ALIEN2021"       = "C:/Users/justi/OneDrive/Documents/GitHub/RLibrary/", 
                    "ALIEN2024"       = "C:/Users/justi/OneDrive/Documents/GitHub/RLibrary/")
 
+
+
 NodeName  <-  Sys.info()["nodename"]
 
 Lib.Dir   <-  PathMap[[NodeName]]
@@ -53,3 +59,9 @@ Lib.Dir   <-  PathMap[[NodeName]]
 
 setwd(Lib.Dir)
 source("Start_List.R")
+
+
+
+
+
+

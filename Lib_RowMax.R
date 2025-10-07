@@ -25,7 +25,7 @@ Lib.RowMin    <-  function(X){
   
   for(i in 1:ncol(X)){
     
-    Min   <-  pmax(Min, X[,i], na.rm=TRUE)
+    Min   <-  pmin(Min, X[,i], na.rm=TRUE)
     
   }
   

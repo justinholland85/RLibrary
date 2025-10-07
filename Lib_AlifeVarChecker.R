@@ -65,7 +65,11 @@ Identifiers  <-  c("clnt_intrnl_id",
                    "CAC_Num",
                    "abn",
                    "c_abn",
-                   "sp_id_enhanced"
+                   "sp_id_enhanced",
+                   "p_id",
+                   "pid",
+                   "a_id",
+                   "alife_id"
                    )
 
 

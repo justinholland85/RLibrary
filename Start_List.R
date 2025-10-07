@@ -58,6 +58,10 @@ source("Lib_NameByMap.R")
 source("Lib_FillDown.R")
 
 
+source("Lib_LeadingZeroes.R")
+source("Lib_DummyDF.R")
+
+
 # General Analytics
 source("Lib_GeneralAnalytics_1D.R")
 source("Lib_GeneralAnalytics_1D_DummyData.R")
@@ -103,6 +107,7 @@ source("Lib_OLS.R")
 # Math
 source("Lib_Trig.R")
 source("Lib_PowerLaw.R")
+source("Lib_Primes.R")
 
 # Reference
 source("Lib_Recall.R")

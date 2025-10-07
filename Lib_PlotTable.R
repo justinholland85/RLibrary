@@ -243,7 +243,8 @@ Lib.PlotTable  <-  function(Table,
     for(j in 1:N.Col){
       
       if(Text.Pos.Method == "C"){ X.Pos  <-  mean(c(T.X0[i,j], T.X1[i,j]))}
-      if(Text.Pos.Method == "L"){ X.Pos  <-  T.X0[i,j]   }              
+      if(Text.Pos.Method == "L"){ X.Pos  <-  T.X0[i,j]   }  
+      if(Text.Pos.Method == "R"){ X.Pos  <-  T.X1[i,j]   }     
         
       text(X.Pos,
            mean(c(T.Y0[i,j], T.Y1[i,j])),

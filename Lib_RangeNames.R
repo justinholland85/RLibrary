@@ -1,5 +1,6 @@
-Lib.RangeNames  <-  function(Breaks){
+Lib.RangeNames  <-  function(Breaks, Closed.Right){
   
+  if(missing(Closed.Right)){Closed.Right   <-  FALSE}  
   
   N  <-  length(Breaks) - 1 
   
@@ -11,7 +12,11 @@ Lib.RangeNames  <-  function(Breaks){
       
     Names[i]  <-  paste(c(Breaks[i]," <= X <= ", Breaks[i+1]),collapse = "")} else {
     
-    Names[i]  <-  paste(c(Breaks[i]," <= X < ", Breaks[i+1]),collapse = "")}
+    if(Closed.Right == FALSE){  
+    Names[i]  <-  paste(c(Breaks[i]," <= X < ", Breaks[i+1]),collapse = "")} else {
+    Names[i]  <-  paste(c(Breaks[i]," < X <= ", Breaks[i+1]),collapse = "")}
+      
+    }
     
   }
   
