@@ -5,7 +5,7 @@ Lib.FillDown  <-  function(X, Y){
   
   CumSum   <-  cumsum(!Y)
   Match    <-  match(CumSum, CumSum)
-  X[Match]
+  X        <-  X[Match]
   
   return(X)
 }

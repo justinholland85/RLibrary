@@ -13,7 +13,7 @@ Lib.Tuple.Count <-  function(..., DF, Names){
   Index        <-  DT[ , .(Count = .N),
                         by = Names.DT]
   
-  Order        <-  do.call(order, as.list(Index[,..Names.DT]))
+  Order        <-  do.call(order, as.list(Index[,..Names.DT, drop = FALSE]))
   Index        <-  Index[Order,]
   
   Count        <-  merge(DT, Index, sort=FALSE,
@@ -61,7 +61,7 @@ Lib.Tuple.Sum <-  function(..., DF, Var, Names){
                          by =  Names.DT)
   
   Index.Sum    <-  Index$Sum
-  Index        <-  data.frame(Index)[ ,Names.DT]  
+  Index        <-  data.frame(Index)[ ,Names.DT, drop = FALSE]  
   
   Index.Match  <-  Lib.Tuple.Match(DT.Orig, Index)
   
@@ -105,7 +105,7 @@ Lib.Tuple.MinMax  <-  function(..., DF, Var, Names){
   Index.Min    <-  Index$Min
   Index.Max    <-  Index$Max
   
-  Index        <-  data.frame(Index)[ ,Names.DT]  
+  Index        <-  data.frame(Index)[ ,Names.DT, drop = FALSE]  
   
   Index.Match  <-  Lib.Tuple.Match(DT.Orig, Index)
   
@@ -149,7 +149,7 @@ Lib.Aggregate <-  function(..., DF, Var, Names){
   Index        <-  Index[Order,]
   
   Output       <-  list("Sum"         = Index$Sum,
-                        "Index"       = Index[,..Names.DT],
+                        "Index"       = Index[,..Names.DT, drop = FALSE],
                         "Full"        = Index)
   
   return(Output)
