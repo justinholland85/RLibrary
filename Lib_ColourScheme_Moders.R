@@ -24,7 +24,7 @@ Lib.ColourScheme.AlphaGet   <-  function(Base){
   alpha_hex <- substr(Base, 8, 9)
   alpha     <- strtoi(alpha_hex, 16L) / 255  # convert hex → decimal → 0–1 scale
   
-  return(Alpha)   
+  return(alpha)   
   
 }
 
