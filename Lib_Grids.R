@@ -85,7 +85,7 @@ Lib.Grid.Draw  <-  function(X, Y, Fill, Border, New, Labels.X, Labels.Y, Labels.
   dX    <-  X1 - X0
   dY    <-  Y1 - Y0
   
-  if(New == 1){Lib.Plot.Blank(X1, Y1, X0, Y0, Main = Main)}
+  if(New == 1){Lib.Plot.Blank(X0 = X0, X1 = X1, Y0 = Y0 , Y1 = Y1, Main = Main)}
   
   
   #----------------------------------------------------------------------------------------------------#
