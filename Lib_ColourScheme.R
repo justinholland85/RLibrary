@@ -55,3 +55,22 @@ return(Table)
 
 
 
+
+Lib.ColourScheme.Grey  <-  function(R, Alpha){
+  
+  
+  Y    <-  hsv(0, 0, R, Alpha)
+  
+  return(Y)
+  
+}
+
+
+
+
+
+
+
+
+
+

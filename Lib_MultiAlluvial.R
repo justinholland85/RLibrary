@@ -31,10 +31,13 @@ Lib.MultiAlluvial   <-  function(Data,
                                  Chord.Bords.Force,
                                  Block.Fills.Force,
                                  Block.Bords.Force,
-                                 Output){
+                                 Output, 
+                                 Text.OnChart,
+                                 Text.OnChart.Cex){
  
   if(missing(Data)){Data  <-   Lib.Markov(N= 5, M= 3)$V}
 
+  
   
   if(missing(Marge)){Marge                          <-  .05}
   if(missing(Marge.Left)){Marge.Left                <-  Marge}
@@ -54,6 +57,11 @@ Lib.MultiAlluvial   <-  function(Data,
   if(missing(Chord.Bords.Map)){Chord.Bords.Map      <-  numeric(0)}
   if(missing(Block.Fills.Map)){Block.Fills.Map      <-  numeric(0)}
   if(missing(Block.Bords.Map)){Block.Bords.Map      <-  numeric(0)}
+  if(missing(Block.Lwd)){Block.Lwd                  <-  1}
+  if(missing(Text.OnChart)){Text.OnChart            <-  0}
+  if(missing(Text.OnChart.Cex)){Text.OnChart.Cex    <-  1}
+  
+  
   
   
 #====================================================================================================# 
@@ -234,7 +242,30 @@ if(missing(Block.Bords.Force)){Block.Bords.Force  <-  Block.Bords}
     
   }
   
-  #====================================================================================================#
+#====================================================================================================#
+# Text on chart
+
+if(Text.OnChart == 1){
+
+  SubOutput[[M]]
+  
+Text.Left.X    <-    SubOutput[[1]]$Blocks.Left.X1
+Text.Left.Y0   <-    apply(SubOutput[[1]]$Chords.Left.Y1 , 1, max)
+Text.Left.Y1   <-    apply(SubOutput[[1]]$Chords.Left.Y0 , 1, min)
+
+
+Text.Right.X    <-    SubOutput[[M]]$Blocks.Right.X0
+Text.Right.Y0   <-    apply(SubOutput[[M]]$Chords.Right.Y1 , 2, max)
+Text.Right.Y1   <-    apply(SubOutput[[M]]$Chords.Right.Y0 , 2, min)
+
+
+text(Text.Left.X,   (Text.Left.Y0 + Text.Left.Y1) / 2, Leg.Labels, cex = Text.OnChart.Cex, pos = 4)
+text(Text.Right.X, (Text.Right.Y0 + Text.Right.Y1) / 2, Leg.Labels, cex = Text.OnChart.Cex, pos = 2)
+
+}
+  
+  
+#====================================================================================================#
   
   if(Plot.Leg == 1){
     
