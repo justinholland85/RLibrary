@@ -27,6 +27,12 @@ for(i in 1:N.Files){
 Counts  <-  table(tolower(unlist(VarNames)))
 Names   <-  names(Counts)
 
+
+
+
+
+
+
 Identifiers  <-  c("clnt_intrnl_id",
                    "Clnt_Id",
                    "Clnt_Intrnl_Id",
@@ -35,6 +41,8 @@ Identifiers  <-  c("clnt_intrnl_id",
                    "c_id",
                    "c_id_uhc",
                    "c_id_csg_head",
+                   "c_sid",
+                   "sid",
                    "tfn",
                    "c_tfn_uhc",
                    "c_tfn_csg_head",
@@ -103,19 +111,69 @@ Identifiers        <-  tolower(Identifiers)
 Dangerous          <-  tolower(Dangerous)
 
 
-IdentifierCounts   <-  cbind(Counts[which(Names %in% Identifiers)])
-DangerousCounts    <-  cbind(Counts[which(Names %in% Dangerous)])
+
+
+#====================================================================================================#
+# Grep Procedure
+#====================================================================================================#
+
+
+Grep.Identifier    <-  character(0)
+
+for(j in 1:length(Identifiers)){
+  
+  Grep.Identifier  <-  c(Grep.Identifier, grep(pattern = Identifiers[j], x = Names, value = TRUE))
+  
+  
+}
+
+
+Grep.Identifier    <-  c(Grep.Identifier, Identifiers)
+
+Grep.Identifier    <-  sort(unique(Grep.Identifier))
+
+
+
+
+
+Grep.Dangerous   <-  character(0)
+
+for(j in 1:length(Dangerous)){
+  
+  Grep.Dangerous  <-  c(Grep.Dangerous, grep(pattern = Dangerous[j], x = Names, value = TRUE))
+  
+  
+}
+
+Grep.Dangerous    <-  c(Grep.Dangerous,Dangerous )
+Grep.Dangerous    <-  sort(unique(Grep.Dangerous))
+
+
+
+
+
+
+IdentifierCounts   <-  cbind(Counts[which(Names %in% Grep.Identifier)])
+DangerousCounts    <-  cbind(Counts[which(Names %in% Grep.Dangerous)])
 AllVarsCounts      <-  cbind(Counts)
 
 
-Output             <-  list("Identifiers" = IdentifierCounts,
-                            "Dangerous"  = DangerousCounts,
-                            "AllVars"    = AllVarsCounts,
-                            "Files"            = Files)
+
+
+#====================================================================================================#
+# Output
+#====================================================================================================#
+
+
+Output             <-  list("Identifiers"     = IdentifierCounts,
+                            "Dangerous"       = DangerousCounts,
+                            "AllVars"         = AllVarsCounts,
+                            "Files"           = Files)
 
 setwd(Getwd)
 
 return(Output)
+
 }
 
 
