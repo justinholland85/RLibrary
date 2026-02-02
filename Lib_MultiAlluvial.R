@@ -42,7 +42,7 @@ Lib.MultiAlluvial   <-  function(Data,
   if(missing(Marge)){Marge                          <-  .05}
   if(missing(Marge.Left)){Marge.Left                <-  Marge}
   if(missing(Marge.Right)){Marge.Right              <-  Marge.Left}
-  if(missing(Marge.Central)){Marge.Central          <-  Marge.Right * .25}
+  if(missing(Marge.Central)){Marge.Central          <-  Marge.Right * .5}
   if(missing(Leg.X)){Leg.X                          <-  1.05}
   if(missing(Leg.Y)){Leg.Y                          <-  1}
   if(missing(Plot.Leg)){Plot.Leg                    <-  0}
@@ -213,11 +213,11 @@ if(missing(Block.Bords.Force)){Block.Bords.Force  <-  Block.Bords}
     
     # Determine margines
     if(i == 1){i.Marge.Left  <- Marge.Left  } else {
-      i.Marge.Left <- Marge.Central / 2}
+      i.Marge.Left <- 2 * Marge.Central}
     
     
     if(i == M){i.Marge.Right  <- Marge.Right} else {
-    i.Marge.Right <- Marge.Central / 2}
+    i.Marge.Right <- 0 }
     
     
     # Execute sub-plot

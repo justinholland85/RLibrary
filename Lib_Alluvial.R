@@ -199,7 +199,7 @@ for(i in 1:N){ b.Y.0[i,]  <- b.Y.1[i,] - Props[i, ]}
 #---- Calculate X Vals
 
 A.X.0  <-  0
-A.X.1  <-  Marge    
+A.X.1  <-  Marge.Left    
 
 B.X.0  <-  1 - Marge.Right
 B.X.1  <-  1    

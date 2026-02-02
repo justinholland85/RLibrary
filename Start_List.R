@@ -56,6 +56,9 @@ source("Lib_InvertedFill.R")
 source("Lib_DF_Unlist.R")
 source("Lib_NameByMap.R")
 source("Lib_FillDown.R")
+source("Lib_PointInPoly.R")
+source("Lib_WeightedQuantile.R")
+
 
 
 source("Lib_LeadingZeroes.R")
