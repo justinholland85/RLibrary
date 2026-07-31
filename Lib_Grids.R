@@ -53,13 +53,14 @@ Lib.Gridify  <-  function(Grid, X, Y){
 
 Lib.Grid.Draw  <-  function(X, Y, Fill, Border, New, Labels.X, Labels.Y, Labels.Gap,
                             Labels.Quad, Labels.Col, Labels.Cex, Labels.Cex.X, 
-                            Labels.Cex.Y, Main){
+                            Labels.Cex.Y, Main, Lwd){
   
   Nx   <-  length(X) - 1  
   Ny   <-  length(Y) - 1
   
   if(missing(Fill))  {       Fill          <-  array(dim=c(Ny,Nx), "transparent")}
   if(missing(Border)){       Border        <-  array(dim=c(Ny,Nx), "black")}
+  if(is.null(dim(Border))){  Border        <-  array(dim=c(Ny,Nx), Border)}
   if(missing(New)){          New           <-  1}
   if(missing(Labels.X)){     Labels.X      <-  rep("", Nx)}
   if(missing(Labels.Y)){     Labels.Y      <-  rep("", Ny)}
@@ -70,6 +71,7 @@ Lib.Grid.Draw  <-  function(X, Y, Fill, Border, New, Labels.X, Labels.Y, Labels.
   if(missing(Labels.Cex.X)){ Labels.Cex.X  <- Labels.Cex}
   if(missing(Labels.Cex.Y)){ Labels.Cex.Y  <- Labels.Cex}
   if(missing(Main)){         Main          <-  ""}
+  if(missing(Lwd)){          Lwd           <-  1}
   
   
   par(xpd = NA)
@@ -96,7 +98,7 @@ Lib.Grid.Draw  <-  function(X, Y, Fill, Border, New, Labels.X, Labels.Y, Labels.
       
       polygon(c(X[j], X[j],  X[j+1], X[j+1]),
               c(Y[i], Y[i+1],Y[i+1], Y[i]),
-              col=Fill[i,j], border = Border[i,j])
+              col=Fill[i,j], border = Border[i,j], lwd = Lwd)
       
     }}
   
