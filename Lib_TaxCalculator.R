@@ -1,3 +1,8 @@
+######################################################################################################
+#/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\#
+# Lib.Tax.Parameters
+#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/#
+######################################################################################################
 
 
 Lib.Tax.Parameters   <-  function(Years,...){
@@ -50,6 +55,11 @@ Lib.Tax.Parameters   <-  function(Years,...){
 
 
 ######################################################################################################
+#/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\#
+# Lib.Tax
+#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/#
+######################################################################################################
+
 
 Lib.Tax         <-  function(X, Rates, Thresholds){
   
@@ -90,8 +100,12 @@ Lib.Tax         <-  function(X, Rates, Thresholds){
 } 
 
 ######################################################################################################
+#/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\#
+# Lib.TaxCalculator
+#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/#
+######################################################################################################
 
-Lib.Tax.Basic  <-  function(X, Year){
+Lib.TaxCalculator  <-  function(X, Year){
   
   
   Parameters         <-  Lib.Tax.Parameters(Year)
@@ -103,17 +117,16 @@ Lib.Tax.Basic  <-  function(X, Year){
   
   MatchYear   <-  match(Year, Parameters$Years)
   
-  Rates   <-  Parameters$Rates.Res
-  Tholds  <-  Parameters$Thold.Res
+  Rates       <-  Parameters$Rates.Res
+  Tholds      <-  Parameters$Thold.Res
   
-  if(is.null(dim(Rates))){Rates  <-  rbind(Rates)}
+  if(is.null(dim(Rates))){Rates    <-  rbind(Rates)}
   if(is.null(dim(Tholds))){Tholds  <-  rbind(Tholds)}
   
   Rates        <-   Rates[MatchYear,]
   Tholds       <-   Tholds[MatchYear,]
     
-    
-  Tax <-  as.numeric(Lib.Tax(X, Rates,Tholds))
+  Tax          <-  as.numeric(Lib.Tax(X, Rates, Tholds))
   
   return(Tax)
   
@@ -121,7 +134,9 @@ Lib.Tax.Basic  <-  function(X, Year){
 }
 
 
+# Note 20260814: I have deprecated Lib.Tax.Basic to fit the more general naming with the offsets
 
+Lib.Tax.Basic  <-  Lib.TaxCalculator
 
 
 

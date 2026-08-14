@@ -102,7 +102,13 @@ source("Lib_Tuple_Match.R")
 # Alife Specials
 source("Lib_AlifeVarChecker.R")
 source("Lib_SafeTable.R")
+
+# Tax
 source("Lib_TaxCalculator.R")
+source("Lib_TaxCalculator_WATO.R")
+source("Lib_TaxCalculator_LITO.R")
+source("Lib_TaxCalculator_LMITO.R")
+
 
 # Stats
 source("Lib_OLS.R")
