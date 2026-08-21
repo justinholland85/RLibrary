@@ -258,35 +258,3 @@ Lib.Tuple.Apply <-  function(..., DF, Vars, Names, Func, FuncMap){
 
 
 
-
-#====================================================================================================#
-# dplyr style 
-#====================================================================================================#
-# Note there is a more general approach unsign across that works on my pc but not on our server
-
-Time   <-  proc.time()
-
-Reduced  <-  as_tibble(Reduced)
-
-Results       <-  list() 
-
-for(i in 1:N.Vars){
-  
-  i.VarName     <-  VarHandle$alife_name[[i]]
-  i.Handle      <-  VarHandle$amalgamation[[i]]
-  i.Function    <-  get(FuncMap[[i.Handle]])
-  # i.Var         <-  Reduced[[i.VarName]]
-  
-  
-  Test   <-  Reduced %>% 
-    group_by(z_year, grp_c_id) %>% 
-    summarise(Value = i.Function(.data[[i.VarName]]), .groups = "drop")
-  
-  Results[[i.VarName]]  <- Test$Value
-  
-}
-
-Time   -  proc.time()
-
-
-
