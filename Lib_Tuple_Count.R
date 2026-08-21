@@ -1,3 +1,10 @@
+######################################################################################################
+#/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\#
+# Lib.Tuple.Count
+#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/#
+######################################################################################################
+
+
 Lib.Tuple.Count <-  function(..., DF, Names){
 # Requires data.table  
   
@@ -34,6 +41,11 @@ Lib.Tuple.Count <-  function(..., DF, Names){
 }
 
 ######################################################################################################
+#/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\#
+# Lib.Tuple.Sum
+#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/#
+######################################################################################################
+
 
 Lib.Tuple.Sum <-  function(..., DF, Var, Names){
   # Requires data.table  
@@ -75,6 +87,11 @@ Lib.Tuple.Sum <-  function(..., DF, Var, Names){
 }
 
 ######################################################################################################
+#/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\#
+# Lib.Tuple.MinMax
+#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/#
+######################################################################################################
+
 
 Lib.Tuple.MinMax  <-  function(..., DF, Var, Names){
   # Requires data.table  
@@ -124,7 +141,14 @@ Lib.Tuple.MinMax  <-  function(..., DF, Var, Names){
 
 
 
+
+
 ######################################################################################################
+#/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\#
+# Lib.Aggregate
+#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/#
+######################################################################################################
+
 
 Lib.Aggregate <-  function(..., DF, Var, Names){
   # Requires data.table  
@@ -157,9 +181,112 @@ Lib.Aggregate <-  function(..., DF, Var, Names){
 }
 
 
+######################################################################################################
+#/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\#
+# Lib.Tuple.Apply
+#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/#
+######################################################################################################
+
+
+Lib.Tuple.Apply <-  function(..., DF, Vars, Names, Func, FuncMap){
+  
+  if(missing(Func)){Func = length}
+  
+  if(missing(DF)){
+    DT         <-  data.table(...)} else {
+      DT         <-  data.table(DF) }
+  
+  DT.Orig      <-  DT
+  
+  if(is.null(dim(Vars))){Vars  <-  data.table(Var = Vars); SingleVar  <- 1} else {SingleVar <- 0}
+  
+  Names.Vars   <- names(Vars)
+  
+  
+  if(missing(Names)){Names.DT     <-  names(DT)} else {Names.DT  <-  Names}
+  
+  DT           <-  data.table(DT, Vars)
+  
+  if(missing(FuncMap)){
+    
+    Index         <-  DT[ , lapply(.SD, Func), by = Names.DT]
+    
+  } else {
+    
+    Index        <- DT[, {
+      Result <- Map(
+        function(x, f) f(x),
+        .SD,
+        FuncMap
+      )
+      setNames(Result, names(FuncMap))
+    }, by = Names.DT, .SDcols = names(FuncMap)]
+    
+    
+  }
+  
+  
+  Order        <-  do.call(order, as.list(Index[,..Names.DT]))
+  Index        <-  Index[Order,]
+  
+  Result       <-  merge(DT.Orig, Index, sort=FALSE,
+                         by =  Names.DT)
+  
+  
+  Index.Result <-  Index[ ,..Names.Vars]
+  Index        <-  data.frame(Index)[ ,Names.DT, drop = FALSE]  
+  
+  Index.Match  <-  Lib.Tuple.Match(DT.Orig, Index)
+  
+  if(SingleVar == 1){
+    
+    Result        <- Results[,1]
+    Index.Result  <- Index.Result[,1]
+    
+  }
+  
+  
+  Output       <-  list("Result"       = Result,
+                        "Index"        = Index,
+                        "Index.Result" = Index.Result,
+                        "Index.Match"  = Index.Match)
+  
+  return(Output)
+  
+}
 
 
 
+
+
+#====================================================================================================#
+# dplyr style 
+#====================================================================================================#
+# Note there is a more general approach unsign across that works on my pc but not on our server
+
+Time   <-  proc.time()
+
+Reduced  <-  as_tibble(Reduced)
+
+Results       <-  list() 
+
+for(i in 1:N.Vars){
+  
+  i.VarName     <-  VarHandle$alife_name[[i]]
+  i.Handle      <-  VarHandle$amalgamation[[i]]
+  i.Function    <-  get(FuncMap[[i.Handle]])
+  # i.Var         <-  Reduced[[i.VarName]]
+  
+  
+  Test   <-  Reduced %>% 
+    group_by(z_year, grp_c_id) %>% 
+    summarise(Value = i.Function(.data[[i.VarName]]), .groups = "drop")
+  
+  Results[[i.VarName]]  <- Test$Value
+  
+}
+
+Time   -  proc.time()
 
 
 
