@@ -101,6 +101,7 @@ source("Lib_Tuple_Match.R")
 
 # Alife Specials
 source("Lib_AlifeVarChecker.R")
+source("Lib_AlifeFileChecker.R")
 source("Lib_SafeTable.R")
 
 # Tax
