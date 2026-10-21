@@ -50,6 +50,7 @@ Lib.Legend  <-  function(Labels, X , Y, Gap, Cols, PointSize, TextSize, Pch, dY,
       YY  <-  Y[i]
     }
     
+    
     points(XX,YY,pch=Pch[[i]],bg=Cols[i], cex=PointSize[i], col = BorderCol[i], lwd = BorderLwd[i],
            type = Type[i], lty = LineLty[i])
     text(X[i] + Gap, Y[i], labels=Labels[i], pos=4, cex=TextSize[i])
@@ -134,23 +135,25 @@ Lib.Legend.Horiz  <-  function(Labels, X0, X1 , Y0, Y1, Gap, Cols, PointSize, Te
     X     <-  Grid$X[i.x]  
     Y     <-  rev(Grid$Y)[i.y]  
     
-    if(Type[i]  == "l"){
+    XX    <-  c(X - Eps, X + Eps  )
+    YY    <-  c(Y, Y)
       
+  
+    if(Type[i] %in%  c('l', 'b')){
       
-      XX   <-  c(X - Eps, X + Eps  )
-      YY   <-  c(Y, Y)
+    points(XX,YY,bg=Cols[i], cex=PointSize[i], col = BorderCol[i], lwd = BorderLwd[i],
+           type = 'l', lty = LineLty[i])
       
-    } else { 
-      
-      XX  <-  X
-      YY  <-  Y
     }
+  
+   if(Type[i] %in% c('p', 'b')){
     
-    points(XX,YY,pch=Pch[[i]],bg=Cols[i], cex=PointSize[i], col = BorderCol[i], lwd = BorderLwd[i],
-           type = Type[i], lty = LineLty[i])
+    points(X,Y,pch=Pch[[i]],bg=Cols[i], cex=PointSize[i], col = BorderCol[i], lwd = BorderLwd[i],
+           type = 'p', lty = LineLty[i])
     
     text(X + Gap, Y, labels=Labels[i], pos=4, cex=TextSize[i])
     
+   }
   }
   
 }
