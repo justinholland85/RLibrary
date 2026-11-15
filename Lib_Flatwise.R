@@ -9,9 +9,9 @@
 # Lib.Flatwise  
 #====================================================================================================#
 
-Lib.Flatwise    <-  function(X, f){
+Lib.Flatwise    <-  function(X, f, ...){
   
-  return(array(f(c(M), ...), dim = dim(M)))
+  return(array(f(c(X), ...), dim = dim(X)))
   
   
 }
